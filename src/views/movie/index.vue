@@ -95,7 +95,7 @@ export default {
     font-size: .3rem;
 }
 
-#content .movie_menu .movie_menu_switch .movie_menu_active{
+#content .movie_menu .movie_menu_switch .router-link-active{
     color: #ef4238;
     border-bottom:2px #ef4238 solid
 }
@@ -110,7 +110,6 @@ export default {
 
 /*movie_body*/
 #content .movie_body{
-    height: 100%;
     padding-bottom: 1rem;
     padding-left: .2rem;
     padding-right: .2rem;

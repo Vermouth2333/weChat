@@ -12,7 +12,7 @@ const server = axios.create({
 
 server.interceptors.request.use((config)=>{
     if(config.method.toUpperCase() == "GET"){
-        config.params = {...config.data}
+       // config.params = {...config.data}
     }else if(config.method.toUpperCase() == "POST"){
         config.headers["content-type"] = "appliaction/x-www-form-urlencoded";
         //config.data = qs.stringify(config.data)
@@ -40,6 +40,7 @@ server.interceptors.response.use((res)=>{
 
 export default (method,url,data={})=>{
     if(method.toUpperCase() == "GET"){
+        console.log(data);
         return server.get(url,{
             params:data
         })

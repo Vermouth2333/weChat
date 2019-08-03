@@ -1,38 +1,53 @@
 <template>
-  <div>
+  <div class="movieWrapper">
     <div class="movie_body">
-      <div class="movie_item">
+      <div class="movie_item" v-for="(item,index) in movieList" :key="index">
         <div class="movie_item_pic">
           <img
-            src="https://p0.meituan.net/128.180/movie/f75fcb7696d55452e32794b2219700b9840805.jpg"
+            :src="item.img |ToImg('128.180')"
           />
         </div>
         <div class="movie_item_info">
-          <h2>无名之辈</h2>
+          <h2>{{item.nm}}</h2>
           <p>
             观众评:
-            <span class="grade">8.5</span>
+            <span class="grade">{{item.sc}}</span>
           </p>
           <p>
             主演：
-            <span>Alley 吴彦祖 胡歌</span>
+            <span>{{item.star}}</span>
           </p>
           <p>
-            <span>今天56家影院放映443场</span>
+            <span>{{item.showInfo}}</span>
           </p>
         </div>
-        <div class="movie_item_btn asale">购票</div>
+        <div :class="item.globalReleased?'movie_item_btn asale':'movie_item_btn ticket'">{{item.globalReleased?'购票':'预售'}}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {movie_now_api} from "api/movie"
 export default {
-    
+  name:"MovieNow",
+  async created(){
+      let data = await movie_now_api();
+   
+      this.movieList = data.data.movieList;
+         console.log(this.movieList);
+  },
+  data(){
+    return{
+      movieList:[]
+    }
+  }
 }
 </script>
 
 <style>
-    
+    .movieWrapper{
+      height: 100%;
+      overflow: auto;
+    }
 </style>
