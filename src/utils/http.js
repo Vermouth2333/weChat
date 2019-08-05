@@ -1,6 +1,6 @@
 import axios from "axios";
-import qs from "qs"
-import loading from "../lib/loading/index.js"
+import qs from "qs";
+import loading from "../lib/loading/index.js";
 
 let vm = loading()
 const server = axios.create({
